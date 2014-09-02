@@ -54,7 +54,7 @@
 						$(blue).data('color', 'lightblue').css('background-color', 'lightblue');
 						$('.number').filter(function () {
 							return 0 === ($(this).text() % $(blue).text()) && $(this).data('color') === 'green';
-						}).data('color', 'grey').css('background-color', 'darkgrey');
+						}).data('color', 'grey').fadeOut('slow');
 					}
 				}, 1000);
 			});
