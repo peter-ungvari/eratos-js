@@ -4,7 +4,7 @@
 	<title>Sieve of Eratosthenes</title>
 </head>
 <body>
-	<form id="sieve-form">
+	<form id="sieve-form" action="#" method="post">
 		<fieldset>
 			<label for="to-input">To</label>
 			<input type="text" id="to-input" />
@@ -18,7 +18,6 @@
 		jQuery(function ($) {
 			
 			$('#sieve-form').on('submit', function (event) {
-				event.preventDefault();
 				$('div#container').html('');
 				var number = $('<span />', {
 					class: 'number',
