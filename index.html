@@ -18,6 +18,7 @@
 		jQuery(function ($) {
 			
 			$('#sieve-form').on('submit', function (event) {
+				event.preventDefault();
 				$('div#container').html('');
 				var number = $('<span />', {
 					class: 'number',
