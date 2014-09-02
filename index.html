@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Sieve of Eratosthenes</title>
+</head>
+<body>
+	<form id="sieve-form" action="#">
+		<fieldset>
+			<label for="to-input">To</label>
+			<input type="text" id="to-input" />
+			<button type="submit" id="sieve-button">Sieve</button>
+		</fieldset>
+	</form>
+	<div id="container" style="margin: 5px"></div>
+
+	<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+	<script type="text/javascript">
+		jQuery(function ($) {
+			
+			$('#sieve-form').on('submit', function () {
+				$('div#container').html('');
+				var number = $('<span />', {
+					class: 'number',
+					style: 'display: inline-block; width: 60px; height: 60px; background-color: lightgreen; text-align: center; line-height: 60px; margin: 5px'
+				});
+
+				var to = $('#to-input').val();
+
+				if(!to) {
+					to = 100;
+				}
+
+				for(var i = 2; i <= to; ++i) {
+					var number = number.clone().text(i).data('color', 'green');
+					$('#container').append(number);
+				}
+
+
+				var iid = setInterval(function() {
+					$('.number').filter(function() { 
+						return $(this).data('color') === 'lightblue';
+					}).css('background-color', 'lightgreen');
+
+					var blue = $('.number').filter(function () {
+						return $(this).data('color') === 'green';
+					})[0];
+
+					if(blue) {
+						if(Number($(blue).text()) > Math.sqrt(to)) {
+							clearInterval(iid);
+							return;
+						}
+						$(blue).data('color', 'lightblue').css('background-color', 'lightblue');
+						$('.number').filter(function () {
+							return 0 === ($(this).text() % $(blue).text()) && $(this).data('color') === 'green';
+						}).data('color', 'grey').css('background-color', 'darkgrey');
+					}
+				}, 1000);
+			});
+});
+</script>
+
+</body>
+</html>
