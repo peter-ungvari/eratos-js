@@ -49,12 +49,13 @@
 					if(blue) {
 						if(Number($(blue).text()) > Math.sqrt(to)) {
 							clearInterval(iid);
+							alert('Done');
 							return;
 						}
 						$(blue).data('color', 'lightblue').css('background-color', 'lightblue');
 						$('.number').filter(function () {
 							return 0 === ($(this).text() % $(blue).text()) && $(this).data('color') === 'green';
-						}).data('color', 'grey').fadeOut('slow');
+						}).data('color', 'grey').css('background-color', 'darkgrey').fadeOut('slow');
 					}
 				}, 1000);
 			});
